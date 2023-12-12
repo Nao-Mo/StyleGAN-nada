@@ -1,0 +1,13 @@
+ZSSGAN/SDtrail.py
+ZSSGAN/images
+ZSSGAN/SDmodels/sd-model-NADAfinetuned/logs/text2image-fine-tune/
+ZSSGAN/NADA/pretrained_model/stylegan2-ffhq-config-f.pt
+Eval_ExampleScript.err
+Eval_ExampleScript.out
+image_of_squirrel_painting.png
+ZSSGAN/__pycache__/
+ZSSGAN/criteria/__pycache__/
+ZSSGAN/NADA/output/
+__pycache__
+ZSSGAN/SDmodels/sd-model-NADAfinetuned/
+ZSSGAN/SDtrail.png

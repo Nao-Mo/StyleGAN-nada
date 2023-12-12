@@ -8,7 +8,7 @@ import math
 import clip
 from PIL import Image
 
-from ZSSGAN.utils.text_templates import imagenet_templates, part_templates, imagenet_templates_small
+from utils.text_templates import imagenet_templates, part_templates, imagenet_templates_small
 
 class DirectionLoss(torch.nn.Module):
 
@@ -30,7 +30,7 @@ class DirectionLoss(torch.nn.Module):
         return self.loss_func(x, y)
 
 class CLIPLoss(torch.nn.Module):
-    def __init__(self, device, lambda_direction=1., lambda_patch=0., lambda_global=0., lambda_manifold=0., lambda_texture=0., patch_loss_type='mae', direction_loss_type='cosine', clip_model='ViT-B/32'):
+    def __init__(self, device, lambda_direction=1., lambda_patch=0., lambda_global=0., lambda_manifold=0., lambda_texture=0., patch_loss_type='mae', direction_loss_type='cosine', clip_model='ViT-B/16'):
         super(CLIPLoss, self).__init__()
 
         self.device = device
@@ -76,7 +76,7 @@ class CLIPLoss(torch.nn.Module):
         return self.model.encode_text(tokens)
 
     def encode_images(self, images: torch.Tensor) -> torch.Tensor:
-        images = self.preprocess(images).to(self.device)
+        images = self.preprocess(images).unsqueeze(0).to(self.device)
         return self.model.encode_image(images)
 
     def encode_images_with_cnn(self, images: torch.Tensor) -> torch.Tensor:

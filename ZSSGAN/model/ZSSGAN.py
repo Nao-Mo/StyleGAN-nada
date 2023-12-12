@@ -403,7 +403,7 @@ class ZSSGAN(torch.nn.Module):
         trainable_img = self.generator_trainable(w_styles, input_is_latent=True, truncation=truncation, randomize_noise=randomize_noise)[0]
         
         clip_loss = torch.sum(torch.stack([self.clip_model_weights[model_name] * self.clip_loss_models[model_name](frozen_img, self.source_class, trainable_img, self.target_class) for model_name in self.clip_model_weights.keys()]))
-
+        #需要从forward内移出上述计算过程，具体实现可参考ipl的代码
         return [frozen_img, trainable_img], clip_loss
 
     def pivot(self):
